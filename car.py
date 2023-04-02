@@ -9,7 +9,7 @@ class Car:
 
         random_color = self.get_random_color()
 
-        self.car = canvas.create_rectangle(direction.x1, direction.y1,  direction.x2, direction.y2, fill = random_color)
+        self.car = canvas.create_rectangle(direction.x1, direction.y1, direction.x2, direction.y2, fill = random_color)
 
         self.move_thread = None
         self.x_speed = direction.x_speed
@@ -31,7 +31,6 @@ class Car:
                 break
             self.canvas.move(self.car, self.x_speed, self.y_speed)
             time.sleep(0.01)
-
 
     def get_random_color(self):
         de=("%02x" % random.randint(0,255))
