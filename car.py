@@ -14,6 +14,8 @@ class Car:
         self.move_thread = None
         self.x_speed = direction.x_speed
         self.y_speed = direction.y_speed
+        self.is_running = True
+
 
     def start(self):
         self.move_thread = threading.Thread(target = self.move)
@@ -29,8 +31,14 @@ class Car:
             elif x2 >= self.canvas.winfo_width() or y2 >= self.canvas.winfo_height():    
                 self.canvas.delete(self.car)
                 break
+            elif self.is_running is False:
+                self.canvas.delete(self.car)
+                break
             self.canvas.move(self.car, self.x_speed, self.y_speed)
             time.sleep(0.01)
+
+    def kill(self):
+        self.is_running = False
 
     def get_random_color(self):
         de=("%02x" % random.randint(0,255))

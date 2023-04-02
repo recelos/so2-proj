@@ -14,13 +14,24 @@ class CarGenerator:
         self.canvas = canvas
         self.cars = []
         self.directions = create_directions(self.canvas)
-        self.start_generating()
+        self.is_running = True
 
-    def start_generating(self):
+    def generate(self):
         direction = self.directions[random.randint(0, 3)]
-
         car = Car(self.canvas, direction)
         car.start()
 
         self.cars.append(car)
-        self.canvas.after(random.randint(500, 1500), self.start_generating)
+        if self.is_running is True:
+          self.canvas.after(random.randint(500, 1500), self.generate)
+
+    def enable(self):
+        if self.is_running is True:
+          self.is_running = False
+        else:
+          self.is_running = True
+          self.generate()
+          
+    def kill_cars(self):
+        for car in self.cars:
+            car.kill()
