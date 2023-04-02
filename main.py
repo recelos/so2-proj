@@ -1,6 +1,4 @@
 import tkinter as tk
-from car import Car
-from direction import Direction
 from car_generator import CarGenerator
 
 def initialize_window():
