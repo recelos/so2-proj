@@ -18,18 +18,18 @@ class CarGenerator:
 
     def generate(self):
         direction = self.directions[random.randint(0, 3)]
-        car = Car(self.canvas, direction)
+        car = Car(self.canvas, direction, self.cars)
         car.start()
 
         self.cars.append(car)
-        print(len([thread for thread in self.cars if car.is_running]))
+        print(len([thread for thread in self.cars if car.is_running == True]))
         if self.is_running is True:
-          self.canvas.after(random.randint(500, 1500), self.generate)
+            self.canvas.after(random.randint(500, 1500), self.generate)
 
 
     def enable(self):
         if self.is_running is True:
-          self.is_running = False
+            self.is_running = False
         else:
-          self.is_running = True
-          self.generate()
+            self.is_running = True
+            self.generate()

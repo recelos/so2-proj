@@ -3,9 +3,10 @@ import threading
 import random
 
 class Car:
-    def __init__(self, canvas, direction):
+    def __init__(self, canvas, direction, cars):
         self.canvas = canvas
         self.direction = direction
+        self.cars = cars
 
         random_color = self.get_random_color()
 
@@ -36,7 +37,7 @@ class Car:
         finally:
             self.canvas.delete(self.car)
             self.is_running = False
-            print(str(self) + " deleted")
+            self.cars.remove(self)
     
     def get_random_color(self):
         de=("%02x" % random.randint(0,255))
