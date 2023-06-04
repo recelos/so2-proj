@@ -16,30 +16,28 @@ class Car:
         self.y_speed = direction.y_speed
         self.is_running = True
 
-
     def start(self):
         self.move_thread = threading.Thread(target = self.move)
         self.move_thread.start()
 
     def move(self):
-        while True:
-            x1, y1, x2, y2 = self.canvas.coords(self.car)
+        try:
+            while True:
+                x1, y1, x2, y2 = self.canvas.coords(self.car)
 
-            if x1 <= 0 or y1 <= 0:
-                self.canvas.delete(self.car)
-                break
-            elif x2 >= self.canvas.winfo_width() or y2 >= self.canvas.winfo_height():    
-                self.canvas.delete(self.car)
-                break
-            elif self.is_running is False:
-                self.canvas.delete(self.car)
-                break
-            self.canvas.move(self.car, self.x_speed, self.y_speed)
-            time.sleep(0.01)
-
-    def kill(self):
-        self.is_running = False
-
+                if x1 <= 0 or y1 <= 0:
+                    break
+                elif x2 >= self.canvas.winfo_width() or y2 >= self.canvas.winfo_height():                    
+                    break
+                elif self.is_running is False:
+                    break
+                self.canvas.move(self.car, self.x_speed, self.y_speed)
+                time.sleep(0.01)
+        finally:
+            self.canvas.delete(self.car)
+            self.is_running = False
+            print(str(self) + " deleted")
+    
     def get_random_color(self):
         de=("%02x" % random.randint(0,255))
         re=("%02x" % random.randint(0,255))
