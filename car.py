@@ -38,7 +38,9 @@ class Car:
             self.canvas.delete(self.car)
             self.is_running = False
             self.cars.remove(self)
+            print(f"Number of cars on the intersection: {len([car for car in self.cars if car.is_running == True])}")
     
+    # source: https://stackoverflow.com/questions/22950997/random-fill-colour-for-shapes-in-pythontkinter
     def get_random_color(self):
         de=("%02x" % random.randint(0,255))
         re=("%02x" % random.randint(0,255))

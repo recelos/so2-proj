@@ -22,7 +22,7 @@ class CarGenerator:
         car.start()
 
         self.cars.append(car)
-        print(len([thread for thread in self.cars if car.is_running == True]))
+        print(f"Number of cars on the intersection: { len([car for car in self.cars if car.is_running == True]) }")
         if self.is_running is True:
             self.canvas.after(random.randint(500, 1500), self.generate)
 
