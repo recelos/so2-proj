@@ -1,4 +1,5 @@
 import random
+import os
 from direction import Direction
 from car import Car
 
@@ -22,7 +23,8 @@ class CarGenerator:
         car.start()
 
         self.cars.append(car)
-        print(f"Number of cars on the intersection: { len([car for car in self.cars if car.is_running == True]) }")
+        os.system("cls")
+        print(f"Number of cars on the intersection: { len([car for car in self.cars if car.is_running]) }")
         if self.is_running is True:
             self.canvas.after(random.randint(500, 1500), self.generate)
 
