@@ -19,6 +19,7 @@ def main():
     button.pack(pady = 10)
     cg.generate()
 
+    root.protocol("WM_DELETE_WINDOW", root.destroy)
     root.mainloop()
 
 if __name__ == "__main__":
