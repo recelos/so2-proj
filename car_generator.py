@@ -1,6 +1,7 @@
 import random
 from direction import Direction
 from car import Car
+import threading
 
 def create_directions(canvas):
     left_to_right = Direction("left_to_right", canvas.winfo_width() - 60, canvas.winfo_width() - 10, canvas.winfo_height() / 2 - 40, canvas.winfo_height() / 2 - 10, -2, 0, "Horizontal")
@@ -15,15 +16,16 @@ class CarGenerator:
         self.cars = []
         self.directions = create_directions(self.canvas)
         self.is_running = True
+        self.semaphore = threading.BoundedSemaphore(15) 
 
     def generate(self):
         direction = self.directions[random.randint(0, 3)]
-        car = Car(self.canvas, direction, self.cars)
+        car = Car(self.canvas, direction, self.cars, self.semaphore)
         car.start()
 
         self.cars.append(car)
         if self.is_running is True:
-            self.canvas.after(random.randint(250, 750), self.generate)
+                self.canvas.after(random.randint(250, 500), self.generate)
 
 
     def enable(self):
