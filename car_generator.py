@@ -1,7 +1,7 @@
 import random
+import threading
 from direction import Direction
 from car import Car
-import threading
 
 def create_directions(canvas):
     left_to_right = Direction("left_to_right", canvas.winfo_width() - 60, canvas.winfo_width() - 10, canvas.winfo_height() / 2 - 40, canvas.winfo_height() / 2 - 10, -2, 0, "Horizontal")
@@ -39,25 +39,25 @@ class CarGenerator:
             self.generate()
 
     def set_intencity(self, value):
-         if value == "5":
-              self.lower = 100
-              self.higher = 200
-         if value == "4":
-              self.lower = 200
-              self.higher = 300
-         if value == "3":
-              self.lower = 250
-              self.higher = 500
-         if value == "2":
-              self.lower = 300
-              self.higher = 750
-         if value == "1":
-              self.lower = 500
-              self.higher = 1000
-    
+        if value == "5":
+            self.lower = 200
+            self.higher = 300
+        if value == "4":
+            self.lower = 250
+            self.higher = 500
+        if value == "3":
+            self.lower = 300
+            self.higher = 750
+        if value == "2":
+            self.lower = 500
+            self.higher = 1000
+        if value == "1":
+            self.lower = 750
+            self.higher = 1500
+
     def set_speed(self, value):
         if value == "5":
-              self.car_speed = 0.005
+            self.car_speed = 0.005
         if value == "4":
             self.car_speed = 0.007
         if value == "3":

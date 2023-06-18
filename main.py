@@ -13,22 +13,22 @@ def initialize_window():
 
 def main():
     root, _, intersection = initialize_window()
-    global cg
-    cg = CarGenerator(intersection.get_canvas())
+    global CG
+    CG = CarGenerator(intersection.get_canvas())
 
     tk.Label(root, text="Intensity: ").pack()
-    intensity_scale = tk.Scale(root, from_ = 1, to = 5, orient = "horizontal", command = cg.set_intencity)
+    intensity_scale = tk.Scale(root, from_ = 1, to = 5, orient = "horizontal", command = CG.set_intencity)
     intensity_scale.set(3)
     intensity_scale.pack()
     tk.Label(root, text="Speed: ").pack()
-    speed_scale = tk.Scale(root, from_ = 1, to = 5, orient = "horizontal", command = cg.set_speed)
+    speed_scale = tk.Scale(root, from_ = 1, to = 5, orient = "horizontal", command = CG.set_speed)
     speed_scale.set(3)
     speed_scale.pack()
 
 
-    button = tk.Button(root, text = "Enable/Disable", command = cg.enable)
+    button = tk.Button(root, text = "Enable/Disable", command = CG.enable)
     button.pack(pady = 10)
-    cg.generate()
+    CG.generate()
 
     root.mainloop()
 

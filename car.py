@@ -1,8 +1,6 @@
 import time
 import threading
 import random
-import os
-import tkinter as tk
 
 class Car:
     def __init__(self, canvas, direction, cars, semaphore, speed):
@@ -69,12 +67,12 @@ class Car:
 
     def is_off_map(self, x1, x2, y1, y2):
         return x1 <= 0 or y1 <= 0 or x2 >= self.canvas.winfo_width() or y2 >= self.canvas.winfo_height()
-    
+
     def check_if_on_intersection(self, x1, x2, y1, y2):
         return x1 < 450 and x2 > 350 and y1 < 350 and y2 > 250
 
     def any_car_on_intersection(self):
-        return any([car for car in self.cars if car.is_on_intersection])      
+        return any(car for car in self.cars if car.is_on_intersection)      
 
     def check_collision(self, x1, x2, y1, y2):
         for car in self.cars:
@@ -85,16 +83,23 @@ class Car:
         return False
 
     def is_behind(self, other_car):
-        x1, y1, x2, y2 = self.canvas.coords(self.car)
+        x_1, y_1, x_2, y_2 = self.canvas.coords(self.car)
         other_x1, other_y1, other_x2, other_y2 = self.canvas.coords(other_car.car)
-        if self.direction.direction_name == "left_to_right" and other_car.direction.direction_name == "left_to_right":
-            return x1 > other_x1
-        if self.direction.direction_name == "right_to_left" and other_car.direction.direction_name == "right_to_left":
-            return x2 < other_x2
-        if self.direction.direction_name == "top_to_bottom" and other_car.direction.direction_name == "top_to_bottom":
-            return y1 < other_y1
-        if self.direction.direction_name == "bottom_to_top" and other_car.direction.direction_name == "bottom_to_top":
-            return y2 > other_y2
+        if self.direction.direction_name == "left_to_right" \
+            and other_car.direction.direction_name == "left_to_right":
+            return x_1 > other_x1
+        
+        if self.direction.direction_name == "right_to_left" \
+            and other_car.direction.direction_name == "right_to_left":
+            return x_2 < other_x2
+        
+        if self.direction.direction_name == "top_to_bottom" \
+            and other_car.direction.direction_name == "top_to_bottom":
+            return y_1 < other_y1
+        
+        if self.direction.direction_name == "bottom_to_top" \
+            and other_car.direction.direction_name == "bottom_to_top":
+            return y_2 > other_y2
 
 
 def get_random_color():
