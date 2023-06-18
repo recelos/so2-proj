@@ -21,7 +21,7 @@ class Car:
         self.is_on_intersection = False
 
     def start(self):
-        self.move_thread = threading.Thread(target=self.move)
+        self.move_thread = threading.Thread(target=self.move, daemon=True)
         self.move_thread.start()
 
     def move(self):
@@ -63,9 +63,6 @@ class Car:
             self.is_running = False
             self.canvas.delete(self.car)
             self.cars.remove(self)
-
-            os.system("cls")
-            print(f"Number of cars on the intersection: {len([car for car in self.cars if car.is_running and car.is_on_intersection])}")
 
     def is_off_map(self, x1, x2, y1, y2):
         return x1 <= 0 or y1 <= 0 or x2 >= self.canvas.winfo_width() or y2 >= self.canvas.winfo_height()
