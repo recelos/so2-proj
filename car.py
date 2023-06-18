@@ -45,6 +45,8 @@ class Car:
                     else:
                         cars_on_intersection = [car for car in self.cars if car.is_on_intersection]
                         if not any(car for car in cars_on_intersection if car.direction.orientation != self.direction.orientation):
+                            if not self.is_on_intersection and self.check_if_on_intersection(x1, x2, y1, y2):
+                                self.is_on_intersection = True
                             self.canvas.move(self.car, self.x_speed, self.y_speed)
                         elif not self.check_if_on_intersection(x1, x2, y1, y2):
                             self.canvas.move(self.car, self.x_speed, self.y_speed)
