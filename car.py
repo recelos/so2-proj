@@ -9,7 +9,6 @@ class Car:
         self.canvas = canvas
         self.direction = direction
         self.cars = cars
-        self.mutex = threading.Lock()
         self.semaphore = semaphore
         random_color = get_random_color()
 
