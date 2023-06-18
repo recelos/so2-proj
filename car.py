@@ -40,6 +40,8 @@ class Car:
                         cars_on_intersection = [car for car in self.cars if car.is_on_intersection]
                         if not any(car for car in cars_on_intersection if car.direction.orientation != self.direction.orientation):
                             self.canvas.move(self.car, self.x_speed, self.y_speed)
+                        if not self.check_if_on_intersection(x1, x2, y1, y2):
+                            self.canvas.move(self.car, self.x_speed, self.y_speed)
                         
                 elif self.check_if_on_intersection(x1, x2, y1, y2):
                     self.is_on_intersection = True
@@ -59,12 +61,13 @@ class Car:
 
     def is_off_map(self, x1, x2, y1, y2):
         return x1 <= 0 or y1 <= 0 or x2 >= self.canvas.winfo_width() or y2 >= self.canvas.winfo_height()
+    
     def check_if_on_intersection(self, x1, x2, y1, y2):
-        return x1 <= 450 and x2 >= 350 and y1 <= 350 and y2 >= 250;
+        return x1 <= 450 and x2 >= 350 and y1 <= 350 and y2 >= 250
+
     def any_car_on_intersection(self):
-        return any([car for car in self.cars if car.is_on_intersection])
-    
-    
+        return any([car for car in self.cars if car.is_on_intersection])      
+
 def get_random_color():
     de = ("%02x" % random.randint(0, 255))
     re = ("%02x" % random.randint(0, 255))
