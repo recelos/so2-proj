@@ -16,16 +16,19 @@ class CarGenerator:
         self.cars = []
         self.directions = create_directions(self.canvas)
         self.is_running = True
-        self.semaphore = threading.BoundedSemaphore(15) 
+        self.semaphore = threading.BoundedSemaphore(15)
+        self.lower = 250
+        self.higher = 500 
+        self.car_speed = 0.01
 
     def generate(self):
         direction = self.directions[random.randint(0, 3)]
-        car = Car(self.canvas, direction, self.cars, self.semaphore)
+        car = Car(self.canvas, direction, self.cars, self.semaphore, self.car_speed)
         car.start()
 
         self.cars.append(car)
         if self.is_running is True:
-                self.canvas.after(random.randint(250, 500), self.generate)
+            self.canvas.after(random.randint(self.lower, self.higher), self.generate)
 
 
     def enable(self):
@@ -34,3 +37,32 @@ class CarGenerator:
         else:
             self.is_running = True
             self.generate()
+
+    def set_intencity(self, value):
+         if value == "5":
+              self.lower = 100
+              self.higher = 200
+         if value == "4":
+              self.lower = 200
+              self.higher = 300
+         if value == "3":
+              self.lower = 250
+              self.higher = 500
+         if value == "2":
+              self.lower = 300
+              self.higher = 750
+         if value == "1":
+              self.lower = 500
+              self.higher = 1000
+    
+    def set_speed(self, value):
+        if value == "5":
+              self.car_speed = 0.005
+        if value == "4":
+            self.car_speed = 0.007
+        if value == "3":
+            self.car_speed = 0.01
+        if value == "2":
+            self.car_speed = 0.03
+        if value == "1":
+            self.car_speed = 0.05

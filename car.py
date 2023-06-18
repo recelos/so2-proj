@@ -5,13 +5,15 @@ import os
 import tkinter as tk
 
 class Car:
-    def __init__(self, canvas, direction, cars, semaphore):
+    def __init__(self, canvas, direction, cars, semaphore, speed):
         self.canvas = canvas
         self.direction = direction
         self.cars = cars
         self.mutex = threading.Lock()
         self.semaphore = semaphore
         random_color = get_random_color()
+
+        self.speed = speed
 
         self.car = canvas.create_rectangle(direction.x1, direction.y1, direction.x2, direction.y2, fill=random_color)
 
@@ -60,7 +62,7 @@ class Car:
                     else:
                         self.canvas.move(self.car, self.x_speed, self.y_speed)
 
-                    time.sleep(0.01)
+                    time.sleep(self.speed)
             finally:
                 self.is_running = False
                 self.canvas.delete(self.car)
