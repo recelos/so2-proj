@@ -16,7 +16,7 @@ Projekt składa się z czterech klas odpowiadających za obsługę skrzyżowania
 + klasa `CarGenerator` odpowiada za losowe tworzenie nowych samochów. Prędkość nadawana samochodom oraz intensywność ich tworzenia zależy od sliderów znajdującym się na interfejsie graficznym.
 
 ## Sekcje krytyczne
-Jako sekcję krytyczną zaimplementowaliśmy semafor, który umożliwia poruszanie się 15 pierwszym samochodom pojawiającym się na jezdni. Celem takiego rozwiązania jest przeciwdziałanie sytuacji, w której przy dużej ilości samochodów na skrzyżowaniu samochody na pasach posiadających pierwszeństwo nie blokowały pernamentnie pozostałych samochodów.
+Jako sekcję krytyczną zaimplementowaliśmy semafor, który umożliwia poruszanie się 15 pierwszym samochodom pojawiającym się na jezdni. Celem takiego rozwiązania jest przeciwdziałanie sytuacji, w której przy dużej ilości samochodów na skrzyżowaniu samochody na pasach posiadających pierwszeństwo nie blokowały permanentnie pozostałych samochodów.
 
 ## Zrzut ekranu 
 ![zdjęcie aplikacji](./scr.png)
